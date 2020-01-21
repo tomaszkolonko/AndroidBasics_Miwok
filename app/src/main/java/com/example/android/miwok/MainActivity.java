@@ -15,9 +15,12 @@
  */
 package com.example.android.miwok;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void openNumbersList(View view) {
-        // TODO - implement this?
+        Intent intent = new Intent(this, NumbersActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -43,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void openFamilyList(View view) {
-        // TODO - implement this?
+        Intent intent = new Intent(this, FamiliyActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -51,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void openColorsList(View view) {
-        // TODO - implement this?
+        Intent intent = new Intent(this, ColorsActivity.class);
+        startActivity(intent);
     }
 
     /**
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void openPhrasesList(View view) {
-        // TODO - implement this?
+        Intent intent = new Intent(this, PhrasesActivity.class);
+        startActivity(intent);
     }
 }
