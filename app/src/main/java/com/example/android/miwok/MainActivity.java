@@ -16,11 +16,16 @@
 package com.example.android.miwok;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,42 +35,61 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
-    }
 
-    /**
-     * This method opens the numberView activity with an explicit intent
-     *
-     * @param view
-     */
-    public void openNumbersList(View view) {
-        Intent intent = new Intent(this, NumbersActivity.class);
-        startActivity(intent);
-    }
+        View numbersView = findViewById(R.id.numbers);
+        numbersView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(MainActivity.this, NumbersActivity.class);
+                startActivity(intent);
 
-    /**
-     * This method opens the familyView activity with an explicit intent
-     * @param view
-     */
-    public void openFamilyList(View view) {
-        Intent intent = new Intent(this, FamiliyActivity.class);
-        startActivity(intent);
-    }
+                // Displaying a toast message just for fun
+                Toast.makeText(view.getContext(), "Open the list of numbers",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
-    /**
-     * This method opens the colorsView activity with an explicit intent
-     * @param view
-     */
-    public void openColorsList(View view) {
-        Intent intent = new Intent(this, ColorsActivity.class);
-        startActivity(intent);
-    }
+        View familyView = findViewById(R.id.family);
+        familyView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(MainActivity.this, FamiliyActivity.class);
+                startActivity(intent);
 
-    /**
-     * This method opens the phraseView activity with an explicit intent
-     * @param view
-     */
-    public void openPhrasesList(View view) {
-        Intent intent = new Intent(this, PhrasesActivity.class);
-        startActivity(intent);
+                // Displaying a toast message just for fun
+                Toast.makeText(view.getContext(), "Open the list of family members",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        View colorsView = findViewById(R.id.colors);
+        colorsView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
+                startActivity(intent);
+
+                // Displaying a toast message just for fun
+                Toast.makeText(view.getContext(), "Open the list of colors",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        View phrasesView = findViewById(R.id.phrases);
+        phrasesView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(MainActivity.this, PhrasesActivity.class);
+                startActivity(intent);
+
+                // Displaying a toast message just for fun
+                Toast.makeText(view.getContext(), "Open the list of phrases",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
