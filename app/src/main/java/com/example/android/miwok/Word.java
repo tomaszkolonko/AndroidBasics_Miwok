@@ -7,6 +7,11 @@ public class Word {
     private String mDefaultWord;
     private String mMiwokWord;
 
+
+    private Word() {
+        this.mDefaultWord = "";
+        this.mMiwokWord = "";
+    }
     /**
      * Create a Word object with the default and Miwok translations
      *
@@ -14,6 +19,7 @@ public class Word {
      * @param miwokWord
      */
     public Word(String defaultWord, String miwokWord) {
+        this();
         this.mDefaultWord = defaultWord;
         this.mMiwokWord = miwokWord;
     }

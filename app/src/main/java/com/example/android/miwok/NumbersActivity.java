@@ -13,21 +13,21 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word("one", "lutti"));
-        words.add(new Word("two", "otiiko"));
-        words.add(new Word("three", "tolookosu"));
-        words.add(new Word("four", "oyyisa"));
-        words.add(new Word("five", "massokka"));
-        words.add(new Word("six", "temmokka"));
-        words.add(new Word("seven", "kenekaku"));
-        words.add(new Word("eigth", "kawinta"));
-        words.add(new Word("nine", "wo'e"));
-        words.add(new Word("ten", "na'aacha"));
+        ArrayList<Word> numbersList = new ArrayList<>();
+        numbersList.add(new Word("one", "lutti"));
+        numbersList.add(new Word("two", "otiiko"));
+        numbersList.add(new Word("three", "tolookosu"));
+        numbersList.add(new Word("four", "oyyisa"));
+        numbersList.add(new Word("five", "massokka"));
+        numbersList.add(new Word("six", "temmokka"));
+        numbersList.add(new Word("seven", "kenekaku"));
+        numbersList.add(new Word("eigth", "kawinta"));
+        numbersList.add(new Word("nine", "wo'e"));
+        numbersList.add(new Word("ten", "na'aacha"));
 
 
-        WordAdapter wordAdapter = new WordAdapter(this, words);
-        ListView listView = (ListView) findViewById(R.id.list);
+        WordAdapter wordAdapter = new WordAdapter(this, numbersList);
+        ListView listView = (ListView) findViewById(R.id.numbersList);
         listView.setAdapter(wordAdapter);
     }
 }
