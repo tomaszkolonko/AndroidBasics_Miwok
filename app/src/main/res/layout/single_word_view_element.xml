@@ -2,26 +2,35 @@
     android:id="@+id/singleWordViewElement"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/miwokWord"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/word_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:paddingLeft="16dp"
         android:paddingTop="16dp"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+        android:src="@mipmap/ic_launcher"
+        android:paddingRight="16dp" />
 
-    <TextView
-        android:id="@+id/defaultWord"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingLeft="16dp"
-        android:text="Placeholder"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/miwokWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Placeholder"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/defaultWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Placeholder" />
+    </LinearLayout>
 
 </LinearLayout>
