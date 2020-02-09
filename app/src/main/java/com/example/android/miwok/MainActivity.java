@@ -16,16 +16,10 @@
 package com.example.android.miwok;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
         numbersView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Creating and starting an explicit intent
                 Intent intent = new Intent(MainActivity.this, NumbersActivity.class);
                 startActivity(intent);
 
                 // Displaying a toast message just for fun
-                Toast.makeText(view.getContext(), "Open the list of numbers",
+                Toast.makeText(view.getContext(), "Open the wordViewElement of numbers",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -59,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 // Displaying a toast message just for fun
-                Toast.makeText(view.getContext(), "Open the list of family members",
+                Toast.makeText(view.getContext(), "Open the wordViewElement of family members",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -73,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 // Displaying a toast message just for fun
-                Toast.makeText(view.getContext(), "Open the list of colors",
+                Toast.makeText(view.getContext(), "Open the wordViewElement of colors",
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -87,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 // Displaying a toast message just for fun
-                Toast.makeText(view.getContext(), "Open the list of phrases",
+                Toast.makeText(view.getContext(), "Open the wordViewElement of phrases",
                         Toast.LENGTH_SHORT).show();
             }
         });

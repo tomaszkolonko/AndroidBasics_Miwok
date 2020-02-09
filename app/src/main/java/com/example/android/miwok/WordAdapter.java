@@ -25,7 +25,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list,
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_word_view_element,
                     parent, false);
         }
 
@@ -33,7 +33,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView defaultWord = (TextView) convertView.findViewById(R.id.defaultWord);
         TextView miwokWord = (TextView) convertView.findViewById(R.id.miwokWord);
 
-        // Populate the data into the templat view using the data object
+        // Populate the data into the template view using the data object
         defaultWord.setText(word.getDefaultTranslation());
         miwokWord.setText(word.getMiwokTranslation());
 
