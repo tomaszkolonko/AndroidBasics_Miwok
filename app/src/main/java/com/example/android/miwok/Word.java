@@ -39,7 +39,6 @@ public class Word {
         this.mDefaultWord = defaultWord;
         this.mMiwokWord = miwokWord;
         this.mImageResourceId = imageResourceId;
-
     }
 
     /**
@@ -69,6 +68,12 @@ public class Word {
         return mImageResourceId;
     }
 
+    /**
+     * Returns a boolean which says true if there is a reference to an image
+     * and false if no reference to an image has been set.
+     *
+     * @return
+     */
     public boolean hasImage() {
         return mImageResourceId != NO_IMAGE_PROVIDED;
     }

@@ -1,22 +1,26 @@
 package com.example.android.miwok;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class WordAdapter extends ArrayAdapter<Word> {
 
-    public WordAdapter(Context context, ArrayList<Word> words) {
+    private int mColor;
+
+    public WordAdapter(Context context, ArrayList<Word> words, int color) {
         super(context, 0, words);
+        this.mColor = color;
     }
 
     @NonNull
@@ -36,17 +40,31 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView miwokWord = (TextView) convertView.findViewById(R.id.miwok_word);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.word_image);
 
+        configureAndPopulateView(word, defaultWord, miwokWord, imageView);
+        setColorOfTextView(convertView);
+
+        // Return the completed view to render on screen
+        return convertView;
+    }
+
+    // This sets the background color of both textViews
+    private void setColorOfTextView(View convertView) {
+        LinearLayout test = (LinearLayout) convertView.findViewById(R.id.textContainer);
+        int color = ContextCompat.getColor(getContext(), mColor);
+        test.setBackgroundColor(color);
+    }
+
+    // This method configures and populates the Views
+    private void configureAndPopulateView(Word word, TextView defaultWord, TextView miwokWord, ImageView imageView) {
         // Populate the data into the template view using the data object
         defaultWord.setText(word.getDefaultTranslation());
         miwokWord.setText(word.getMiwokTranslation());
+
         if(word.hasImage()) {
             imageView.setImageResource(word.getImageResourceId());
             imageView.setVisibility(View.VISIBLE);
         } else {
             imageView.setVisibility(View.GONE);
         }
-
-        // Return the completed view to render on screen
-        return convertView;
     }
 }

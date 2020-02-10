@@ -26,7 +26,7 @@ public class NumbersActivity extends AppCompatActivity {
         numbersList.add(new Word("ten", "na'aacha", R.drawable.number_ten));
 
 
-        WordAdapter wordAdapter = new WordAdapter(this, numbersList);
+        WordAdapter wordAdapter = new WordAdapter(this, numbersList, R.color.category_numbers);
         ListView listView = (ListView) findViewById(R.id.wordListContainer);
         listView.setAdapter(wordAdapter);
     }
