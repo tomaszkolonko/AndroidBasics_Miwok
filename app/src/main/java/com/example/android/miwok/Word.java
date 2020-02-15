@@ -7,23 +7,30 @@ public class Word {
     private String mDefaultWord;
     private String mMiwokWord;
     private int mImageResourceId = NO_IMAGE_PROVIDED;
+    private int mSoundResourceId = NO_SOUND_PROVIDED;
+
     private static final int NO_IMAGE_PROVIDED = -1;
+    private static final int NO_SOUND_PROVIDED = -1;
 
 
     private Word() {
         this.mDefaultWord = "";
         this.mMiwokWord = "";
         this.mImageResourceId = 0;
+        this.mSoundResourceId = 0;
     }
     /**
-     * Create a Word object with the default and Miwok translations
+     * Create a Word object with the default and Miwok translations. This constructor
+     * is used for the phrases
      *
      * @param defaultWord
      * @param miwokWord
+     * @param soundResourceId
      */
-    public Word(String defaultWord, String miwokWord) {
+    public Word(String defaultWord, String miwokWord, int soundResourceId) {
         this.mDefaultWord = defaultWord;
         this.mMiwokWord = miwokWord;
+        this.mSoundResourceId = soundResourceId;
     }
 
     /**
@@ -33,12 +40,13 @@ public class Word {
      * @param defaultWord
      * @param miwokWord
      * @param imageResourceId
+     * @param soundResourceId
      */
-    public Word(String defaultWord, String miwokWord, int imageResourceId) {
-        this();
+    public Word(String defaultWord, String miwokWord, int imageResourceId, int soundResourceId) {
         this.mDefaultWord = defaultWord;
         this.mMiwokWord = miwokWord;
         this.mImageResourceId = imageResourceId;
+        this.mSoundResourceId = soundResourceId;
     }
 
     /**
