@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
+
+    /** Handels the playback of the provided soundfiles */
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +49,34 @@ public class PhrasesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MediaPlayer
-                        .create(adapterView.getContext(), phrasesList.get(i).getSoundResourceId())
-                        .start();
+                mediaPlayer = MediaPlayer.create(adapterView.getContext(),
+                        phrasesList.get(i).getSoundResourceId());
+                mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        releaseMediaPlayer();
+                    }
+                });
             }
         });
+    }
+
+    /**
+     * Clean up the media player by releasing it's resourced
+     */
+    private void releaseMediaPlayer() {
+        if(mediaPlayer != null) {
+            // Regardless of the state of the mediaPlayer, release its resources
+            // because we don't need it anymore
+            mediaPlayer.release();
+
+            // Set the media player to null. For our project, we decided that having
+            // the mediaPlayer set to null is an easy way to decide that it is not
+            // being used playing music or used in another state.
+            mediaPlayer = null;
+            Toast.makeText(getApplicationContext(), "Released MediaPlayer",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }
