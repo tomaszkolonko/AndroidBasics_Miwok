@@ -46,7 +46,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         configureAndPopulateView(word, defaultWord, miwokWord, imageView);
         setColorOfTextView(convertView);
-        setOnClickForSound(word, convertView);
 
         // Return the completed view to render on screen
         return convertView;
@@ -83,16 +82,5 @@ public class WordAdapter extends ArrayAdapter<Word> {
         LinearLayout test = (LinearLayout) convertView.findViewById(R.id.textContainer);
         int color = ContextCompat.getColor(getContext(), mColor);
         test.setBackgroundColor(color);
-    }
-
-    private void setOnClickForSound(final Word word, View convertView) {
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MediaPlayer mc = MediaPlayer.create(v.getContext(), word.getSoundResourceId());
-                mc.start();
-                Toast.makeText(v.getContext(), "yolo", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
