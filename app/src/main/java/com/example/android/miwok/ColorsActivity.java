@@ -15,6 +15,18 @@ public class ColorsActivity extends AppCompatActivity {
     /** Handels the playback of the provided soundfiles */
     private MediaPlayer mediaPlayer;
 
+    /**
+     * This listener gets triggered when the {@link MediaPlayer} has completed
+     * playing the audio file.
+     */
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            // Now that the sound file has finished playing, release the media player resources.
+            releaseMediaPlayer();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +57,16 @@ public class ColorsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // release MediaPlayer resources BEFORE the MediaPlayer is initialized
+                releaseMediaPlayer();
+
                 mediaPlayer = MediaPlayer.create(adapterView.getContext(),
                         colorsList.get(i).getSoundResourceId());
                 mediaPlayer.start();
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        releaseMediaPlayer();
-                    }
-                });
+
+                // Setup a listener on the media player, so that we can stop and release
+                // the media player once the sound has finished playing.
+                mediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
     }
