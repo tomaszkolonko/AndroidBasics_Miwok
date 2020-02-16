@@ -63,7 +63,7 @@ public class PhrasesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // release MediaPlayer resources BEFORE the MediaPlayer is initialized
                 releaseMediaPlayer();
-                
+
                 mediaPlayer = MediaPlayer.create(adapterView.getContext(),
                         phrasesList.get(i).getSoundResourceId());
                 mediaPlayer.start();
@@ -73,6 +73,14 @@ public class PhrasesActivity extends AppCompatActivity {
                 mediaPlayer.setOnCompletionListener(mCompletionListener);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is stopped, release the MediaPlayer's resources even
+        // if the audiofile didn't finish playing
+        releaseMediaPlayer();
     }
 
     /**

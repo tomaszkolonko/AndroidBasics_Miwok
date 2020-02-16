@@ -76,6 +76,14 @@ public class NumbersActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is stopped, release the MediaPlayer's resources even
+        // if the audiofile didn't finish playing
+        releaseMediaPlayer();
+    }
+
     /**
      * Clean up the media player by releasing it's resourced
      */
