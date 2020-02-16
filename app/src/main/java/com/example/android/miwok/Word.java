@@ -77,6 +77,12 @@ public class Word {
     }
 
     /**
+     * Get the reference to the sound resource
+     * @return
+     */
+    public int getSoundResourceId() { return mSoundResourceId; }
+
+    /**
      * Returns a boolean which says true if there is a reference to an image
      * and false if no reference to an image has been set.
      *
