@@ -1,9 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/singleWordViewElement"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:minHeight="@dimen/list_item_height"
+    android:layout_height="@dimen/list_item_height"
     android:background="@color/tan_background"
     android:orientation="horizontal">
 
@@ -15,20 +13,24 @@
     <LinearLayout
         android:id="@+id/textContainer"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:paddingLeft="16dp"
-        android:orientation="vertical" >
+        android:layout_height="@dimen/list_item_height"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/word_image"
+        android:orientation="vertical"
+        android:paddingLeft="16dp">
 
         <TextView
             android:id="@+id/miwok_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Placeholder"
-            android:textStyle="bold"
             android:gravity="bottom"
+            android:text="Placeholder"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/default_word"
@@ -36,9 +38,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="top"
+            android:text="Placeholder"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/white"
-            android:text="Placeholder" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_play" />
+
+</RelativeLayout>
