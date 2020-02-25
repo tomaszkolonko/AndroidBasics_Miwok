@@ -19,12 +19,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NumbersFragment.OnFragmentInteractionListener} interface
+ * {@link PhrasesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NumbersFragment#newInstance} factory method to
+ * Use the {@link PhrasesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NumbersFragment extends Fragment {
+public class PhrasesFragment extends Fragment {
 
     /** Handels the playback of the provided soundfiles */
     private MediaPlayer mMediaPlayer;
@@ -75,7 +75,7 @@ public class NumbersFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public NumbersFragment() {
+    public PhrasesFragment() {
         // Required empty public constructor
     }
 
@@ -85,15 +85,20 @@ public class NumbersFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NumbersFragment.
+     * @return A new instance of fragment PhrasesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NumbersFragment newInstance(String param1, String param2) {
-        NumbersFragment fragment = new NumbersFragment();
+    public static PhrasesFragment newInstance(String param1, String param2) {
+        PhrasesFragment fragment = new PhrasesFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -105,30 +110,29 @@ public class NumbersFragment extends Fragment {
         // Create and setup the AudioManager to request audio focus
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        final ArrayList<Word> numbersList = new ArrayList<>();
-        numbersList.add(new Word("one", "lutti", R.drawable.number_one,
-                R.raw.number_one));
-        numbersList.add(new Word("two", "otiiko", R.drawable.number_two,
-                R.raw.number_two));
-        numbersList.add(new Word("three", "tolookosu", R.drawable.number_three,
-                R.raw.number_three));
-        numbersList.add(new Word("four", "oyyisa", R.drawable.number_four,
-                R.raw.number_four));
-        numbersList.add(new Word("five", "massokka", R.drawable.number_five,
-                R.raw.number_five));
-        numbersList.add(new Word("six", "temmokka", R.drawable.number_six,
-                R.raw.number_six));
-        numbersList.add(new Word("seven", "kenekaku", R.drawable.number_seven,
-                R.raw.number_seven));
-        numbersList.add(new Word("eigth", "kawinta", R.drawable.number_eight,
-                R.raw.number_eight));
-        numbersList.add(new Word("nine", "wo'e", R.drawable.number_nine,
-                R.raw.number_nine));
-        numbersList.add(new Word("ten", "na'aacha", R.drawable.number_ten,
-                R.raw.number_ten));
+        final ArrayList<Word> phrasesList = new ArrayList<>();
+        phrasesList.add(new Word("Where are you going?", "minto wuksus",
+                R.raw.phrase_where_are_you_going));
+        phrasesList.add(new Word("What is your name?", "tinnә oyaase'nә",
+                R.raw.phrase_what_is_your_name));
+        phrasesList.add(new Word("My name is...", "My name is...",
+                R.raw.phrase_my_name_is));
+        phrasesList.add(new Word("How are you feeling?", "michәksәs?",
+                R.raw.phrase_how_are_you_feeling));
+        phrasesList.add(new Word("I’m feeling good.", "kuchi achit",
+                R.raw.phrase_im_feeling_good));
+        phrasesList.add(new Word("Are you coming?", "әәnәs'aa?",
+                R.raw.phrase_are_you_coming));
+        phrasesList.add(new Word("Yes, I’m coming.", "hәә’ әәnәm",
+                R.raw.phrase_yes_im_coming));
+        phrasesList.add(new Word("I’m coming.", "әәnәm",
+                R.raw.phrase_im_coming));
+        phrasesList.add(new Word("Let's go.", "yoowutis",
+                R.raw.phrase_lets_go));
+        phrasesList.add(new Word("Come here", "әnni'nem",
+                R.raw.phrase_come_here));
 
-
-        WordAdapter wordAdapter = new WordAdapter(getActivity(), numbersList, R.color.category_numbers);
+        WordAdapter wordAdapter = new WordAdapter(getActivity(), phrasesList, R.color.category_phrases);
         ListView listView = (ListView) rootView.findViewById(R.id.wordListContainer);
         listView.setAdapter(wordAdapter);
 
@@ -138,7 +142,7 @@ public class NumbersFragment extends Fragment {
                 // release MediaPlayer resources BEFORE the MediaPlayer is initialized
                 releaseMediaPlayer();
 
-                Word word = numbersList.get(index);
+                Word word = phrasesList.get(index);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -189,8 +193,8 @@ public class NumbersFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        // When the activity is stopped, release the media player resources because we won't
-        // be playing any more sounds.
+        // When the activity is stopped, release the MediaPlayer's resources even
+        // if the audiofile didn't finish playing
         releaseMediaPlayer();
     }
 

@@ -19,12 +19,12 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NumbersFragment.OnFragmentInteractionListener} interface
+ * {@link ColorsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NumbersFragment#newInstance} factory method to
+ * Use the {@link ColorsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NumbersFragment extends Fragment {
+public class ColorsFragment extends Fragment {
 
     /** Handels the playback of the provided soundfiles */
     private MediaPlayer mMediaPlayer;
@@ -75,7 +75,7 @@ public class NumbersFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public NumbersFragment() {
+    public ColorsFragment() {
         // Required empty public constructor
     }
 
@@ -85,15 +85,20 @@ public class NumbersFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NumbersFragment.
+     * @return A new instance of fragment ColorsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NumbersFragment newInstance(String param1, String param2) {
-        NumbersFragment fragment = new NumbersFragment();
+    public static ColorsFragment newInstance(String param1, String param2) {
+        ColorsFragment fragment = new ColorsFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -105,30 +110,25 @@ public class NumbersFragment extends Fragment {
         // Create and setup the AudioManager to request audio focus
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        final ArrayList<Word> numbersList = new ArrayList<>();
-        numbersList.add(new Word("one", "lutti", R.drawable.number_one,
-                R.raw.number_one));
-        numbersList.add(new Word("two", "otiiko", R.drawable.number_two,
-                R.raw.number_two));
-        numbersList.add(new Word("three", "tolookosu", R.drawable.number_three,
-                R.raw.number_three));
-        numbersList.add(new Word("four", "oyyisa", R.drawable.number_four,
-                R.raw.number_four));
-        numbersList.add(new Word("five", "massokka", R.drawable.number_five,
-                R.raw.number_five));
-        numbersList.add(new Word("six", "temmokka", R.drawable.number_six,
-                R.raw.number_six));
-        numbersList.add(new Word("seven", "kenekaku", R.drawable.number_seven,
-                R.raw.number_seven));
-        numbersList.add(new Word("eigth", "kawinta", R.drawable.number_eight,
-                R.raw.number_eight));
-        numbersList.add(new Word("nine", "wo'e", R.drawable.number_nine,
-                R.raw.number_nine));
-        numbersList.add(new Word("ten", "na'aacha", R.drawable.number_ten,
-                R.raw.number_ten));
+        final ArrayList<Word> colorsList = new ArrayList<>();
+        colorsList.add(new Word("red", "weṭeṭṭi",
+                R.drawable.color_red, R.raw.color_red));
+        colorsList.add(new Word("green", "chokokki",
+                R.drawable.color_green, R.raw.color_green));
+        colorsList.add(new Word("brown", "ṭakaakki",
+                R.drawable.color_brown, R.raw.color_brown));
+        colorsList.add(new Word("gray", "ṭopoppi",
+                R.drawable.color_gray, R.raw.color_gray));
+        colorsList.add(new Word("black", "kululli",
+                R.drawable.color_black, R.raw.color_black));
+        colorsList.add(new Word("white", "kelelli",
+                R.drawable.color_white, R.raw.color_white));
+        colorsList.add(new Word("dusty yello", "ṭopiisә",
+                R.drawable.color_dusty_yellow, R.raw.color_dusty_yellow));
+        colorsList.add(new Word("mustard yellow", "chiwiiṭә",
+                R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 
-
-        WordAdapter wordAdapter = new WordAdapter(getActivity(), numbersList, R.color.category_numbers);
+        WordAdapter wordAdapter = new WordAdapter(getActivity(), colorsList, R.color.category_colors);
         ListView listView = (ListView) rootView.findViewById(R.id.wordListContainer);
         listView.setAdapter(wordAdapter);
 
@@ -138,7 +138,7 @@ public class NumbersFragment extends Fragment {
                 // release MediaPlayer resources BEFORE the MediaPlayer is initialized
                 releaseMediaPlayer();
 
-                Word word = numbersList.get(index);
+                Word word = colorsList.get(index);
 
                 // Request audio focus so in order to play the audio file. The app needs to play a
                 // short audio file, so we will request audio focus with a short amount of time
@@ -170,6 +170,12 @@ public class NumbersFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -189,8 +195,8 @@ public class NumbersFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        // When the activity is stopped, release the media player resources because we won't
-        // be playing any more sounds.
+        // When the activity is stopped, release the MediaPlayer's resources even
+        // if the audiofile didn't finish playing
         releaseMediaPlayer();
     }
 
