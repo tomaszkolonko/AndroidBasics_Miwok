@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class ColorsFragment extends Fragment {
 
     /** Handles the AudioFocus */
     private AudioManager mAudioManager;
+
+    private int mPage;
 
     /**
      * This listener gets triggered when the {@link MediaPlayer} has completed
